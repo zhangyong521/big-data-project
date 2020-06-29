@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <!--用来指定HDFS的Leader-namenode的地址-->
+    <property>
+        <name>fs.default.name</name>
+        <value>hdfs://hadoop201:9000</value>
+    </property>
+
+    <!--用来表明hadoop运行时所产生的文件的存放目录-->
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/home/software/hadoop-2.7.2/tmp</value>
+    </property>
+</configuration>

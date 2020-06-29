@@ -1,0 +1,9 @@
+1 alex 55
+2 alex 69
+3 alex 75
+1 romeo 44
+2 romeo 64
+3 romeo 86
+1 lee 76
+2 lee 84
+3 lee 93
