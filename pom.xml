@@ -12,6 +12,7 @@
         <module>hadoop</module>
         <module>HBase</module>
         <module>kafka</module>
+        <module>spark</module>
     </modules>
 
 </project>
