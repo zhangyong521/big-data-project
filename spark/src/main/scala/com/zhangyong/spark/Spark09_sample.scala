@@ -7,9 +7,9 @@ import org.apache.spark.{SparkConf, SparkContext}
  * @Blog: https://blog.csdn.net/zy13765287861
  * @Version: 1.0
  * @Date: 2020-07-28 17:36
- * @PS: map算子
+ * @PS: mapPartitionsWithIndex
  */
-object Spark02_Oper1 {
+object Spark09_sample {
   def main(args: Array[String]): Unit = {
     //local模式
     //创建sparkConf对象
@@ -18,9 +18,14 @@ object Spark02_Oper1 {
     //创建Spark上下文对象
     val sc = new SparkContext(config)
 
-    //map算子
     val listRDD = sc.makeRDD(1 to 10)
-    val mapRDD = listRDD.map(x => x * 2)
-    mapRDD.collect().foreach(println)
+
+    //以指定的随机种子随机抽样出数量为fraction的数据，withReplacement表示是抽出的数据是否放回，true为有放回的抽样，false为无放回的抽样，seed用于指定随机数生成器种子。
+    //val sampleRDD = listRDD.sample(true,0.4,2)
+
+    val sampleRDD = listRDD.sample(false,0.2,3)
+
+    sampleRDD.collect().foreach(println)
+
   }
 }
