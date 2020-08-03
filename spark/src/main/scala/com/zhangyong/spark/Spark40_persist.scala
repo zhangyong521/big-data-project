@@ -9,7 +9,7 @@ import org.apache.spark.{SparkConf, SparkContext}
  * @Date: 2020-07-28 17:36
  * @PS: 针对（K,V）类型的RDD，返回一个（K，Int）的map，表示每一个key对应的元素个数。
  */
-object Spark39_foreach {
+object Spark40_persist {
   def main(args: Array[String]): Unit = {
     //local模式
     //创建sparkConf对象
@@ -18,9 +18,17 @@ object Spark39_foreach {
     //创建Spark上下文对象
     val sc = new SparkContext(config)
 
-    val rdd = sc.makeRDD(1 to 5, 2)
+    val rdd = sc.makeRDD(Array("zhangyong"))
 
-    rdd.foreach(println)
+    //将RDD转换为携带当前时间戳不做缓存
+    val nocache = rdd.map(_.toString + System.currentTimeMillis)
+    nocache.collect().foreach(println)
+
+    //将RDD转换为携带当前时间戳并做缓存
+    val cache = rdd.map(_.toString + System.currentTimeMillis).cache
+    cache.collect().foreach(println)
+
+
   }
 
 }

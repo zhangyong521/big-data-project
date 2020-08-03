@@ -1,15 +1,16 @@
 package com.zhangyong.spark
 
+import scala.util.parsing.json.JSON
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
  * @Author: 张勇
  * @Blog: https://blog.csdn.net/zy13765287861
  * @Version: 1.0
- * @Date: 2020-07-28 17:36
- * @PS: 针对（K,V）类型的RDD，返回一个（K，Int）的map，表示每一个key对应的元素个数。
+ * @Date: 2020-07-28 17:10
+ * @PS: 创建RDD
  */
-object Spark39_foreach {
+object Spark41_JSON {
   def main(args: Array[String]): Unit = {
     //local模式
     //创建sparkConf对象
@@ -18,9 +19,11 @@ object Spark39_foreach {
     //创建Spark上下文对象
     val sc = new SparkContext(config)
 
-    val rdd = sc.makeRDD(1 to 5, 2)
+    val json = sc.textFile("spark/in/user.json")
+    val result = json.map(JSON.parseFull)
+    result.foreach(println)
 
-    rdd.foreach(println)
+    //释放资源
+    sc.stop()
   }
-
 }
