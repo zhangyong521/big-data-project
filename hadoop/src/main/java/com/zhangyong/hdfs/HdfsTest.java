@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
  * @Date: 2020-06-29 10:54
  * @PS: HDFS的客户端基本操作
  */
-public class HDFSTest {
+public class HdfsTest {
     /**
      * 测试java连接Hadoop的HDFS
      *
@@ -47,7 +47,7 @@ public class HDFSTest {
      * @throws IOException
      */
     @Test
-    public void put() throws URISyntaxException, IOException, InterruptedException {
+    public void put() throws IOException, InterruptedException {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         //1、读取一个HDFS的抽象封装对象
@@ -55,7 +55,7 @@ public class HDFSTest {
         FileSystem fileSystem = FileSystem.get (URI.create (hdfs), configuration, "zhangyong");
 
         //用这个对象操作文件系统
-        fileSystem.copyFromLocalFile (new Path("d:\\IO"), new Path ("/"));
+        fileSystem.copyFromLocalFile (new Path("d:\\IO\\upload"), new Path ("/"));
 
         System.out.println ("上传完成");
         //关闭文件系统
@@ -69,7 +69,7 @@ public class HDFSTest {
      * @throws IOException
      */
     @Test
-    public void get() throws URISyntaxException, IOException, InterruptedException {
+    public void get() throws IOException, InterruptedException {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         //1、读取一个HDFS的抽象封装对象
@@ -91,7 +91,7 @@ public class HDFSTest {
      * @throws IOException
      */
     @Test
-    public void rename() throws URISyntaxException, IOException, InterruptedException {
+    public void rename() throws IOException, InterruptedException {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         //1、读取一个HDFS的抽象封装对象
@@ -99,7 +99,7 @@ public class HDFSTest {
         FileSystem fileSystem = FileSystem.get (URI.create (hdfs), configuration, "zhangyong");
 
         //用这个对象操作文件系统
-        fileSystem.rename (new Path ("/logs"), new Path ("/logs2"));
+        fileSystem.rename (new Path ("/upload"), new Path ("/up"));
 
         System.out.println ("更改完成");
         //关闭文件系统
@@ -121,7 +121,7 @@ public class HDFSTest {
         Configuration configuration = new Configuration ();
         FileSystem fileSystem = FileSystem.get (new URI (hdfs), configuration, "zhangyong");
         // 2 执行删除
-        fileSystem.delete (new Path ("/logs2/"), true);
+        fileSystem.delete (new Path ("/anshun/"), true);
         // 3 关闭资源
         fileSystem.close ();
         System.out.println ("删除完成");

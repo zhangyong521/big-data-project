@@ -15,6 +15,7 @@ public class ScoreBean implements Writable {
     private int chinese;
     private int math;
     private int english;
+
     @Override
     public void write(DataOutput dataOutput) throws IOException {
         dataOutput.writeUTF(name);

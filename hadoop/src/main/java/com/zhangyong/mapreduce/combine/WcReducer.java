@@ -11,14 +11,14 @@ import java.io.IOException;
  * @Date 2020/4/15 7:34
  * @Version 1.0
  */
-public class WcReducer extends Reducer<Text,IntWritable,Text,IntWritable> {
+public class WcReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
         int count = 0;
         for (IntWritable value : values) {
-            count+=value.get ();
+            count += value.get();
             System.err.println(key + ":" + value);
         }
-        context.write (key,new IntWritable (count));
+        context.write(key, new IntWritable(count));
     }
 }

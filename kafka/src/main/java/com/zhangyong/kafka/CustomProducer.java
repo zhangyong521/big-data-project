@@ -1,4 +1,4 @@
-package com.zhangyong;
+package com.zhangyong.kafka;
 
 import org.apache.kafka.clients.producer.*;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutionException;
  * @Blog: https://blog.csdn.net/zy13765287861
  * @Version: 1.0
  * @Date: 2020-06-29 10:54
- * @PS: kafka消费者
+ * @PS: kafka生产者
  */
 public class CustomProducer {
 

@@ -15,10 +15,10 @@ import java.io.IOException;
 public class WcMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        String line = value.toString ();
-        String[] words = line.split (" ");
+        String line = value.toString();
+        String[] words = line.split(" ");
         for (String word : words) {
-            context.write (new Text (word), new IntWritable (1));
+            context.write(new Text(word), new IntWritable(1));
         }
     }
 }

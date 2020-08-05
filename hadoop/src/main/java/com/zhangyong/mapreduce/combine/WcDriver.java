@@ -18,16 +18,16 @@ import java.io.IOException;
  */
 public class WcDriver {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-        Configuration conf = new Configuration ();
-        Job job = Job.getInstance (conf);
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance(conf);
 
-        job.setJarByClass (WcDriver.class);
+        job.setJarByClass(WcDriver.class);
 
-        job.setMapperClass (WcMapper.class);
-        job.setReducerClass (WcReducer.class);
+        job.setMapperClass(WcMapper.class);
+        job.setReducerClass(WcReducer.class);
 
-        job.setMapOutputKeyClass (Text.class);
-        job.setMapOutputValueClass (IntWritable.class);
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(IntWritable.class);
 
         /**
          * 设置combine组件类，如果不设定，默认是不执行combine过程的。
@@ -36,12 +36,12 @@ public class WcDriver {
          */
         job.setCombinerClass(WcCombine.class);
 
-        job.setOutputKeyClass (Text.class);
-        job.setOutputValueClass (IntWritable.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
 
-        FileInputFormat.setInputPaths (job, new Path ("hdfs://hadoop201:9000/combine"));
-        FileOutputFormat.setOutputPath (job, new Path ("hdfs://hadoop201:9000/result/combine"));
+        FileInputFormat.setInputPaths(job, new Path("hdfs://hadoop201:9000/combine"));
+        FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop201:9000/result/combine"));
 
-        job.waitForCompletion (true);
+        job.waitForCompletion(true);
     }
 }
