@@ -32,12 +32,12 @@ public class HdfsTest {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         // 1 获取文件系统
-        Configuration cfg = new Configuration ();
-        FileSystem fs = FileSystem.get (new URI (hdfs), cfg, "zhangyong");
+        Configuration cfg = new Configuration();
+        FileSystem fs = FileSystem.get(new URI(hdfs), cfg, "zhangyong");
 
-        System.out.println (cfg);
-        System.out.println (fs);
-        System.out.println ("HDFS开启了！！！");
+        System.out.println(cfg);
+        System.out.println(fs);
+        System.out.println("HDFS开启了！！！");
     }
 
     /**
@@ -51,15 +51,15 @@ public class HdfsTest {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         //1、读取一个HDFS的抽象封装对象
-        Configuration configuration = new Configuration ();
-        FileSystem fileSystem = FileSystem.get (URI.create (hdfs), configuration, "zhangyong");
+        Configuration configuration = new Configuration();
+        FileSystem fileSystem = FileSystem.get(URI.create(hdfs), configuration, "zhangyong");
 
         //用这个对象操作文件系统
-        fileSystem.copyFromLocalFile (new Path("d:\\IO\\upload"), new Path ("/"));
+        fileSystem.copyFromLocalFile(new Path("d:\\IO\\upload"), new Path("/"));
 
-        System.out.println ("上传完成");
+        System.out.println("上传完成");
         //关闭文件系统
-        fileSystem.close ();
+        fileSystem.close();
     }
 
     /**
@@ -73,15 +73,15 @@ public class HdfsTest {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         //1、读取一个HDFS的抽象封装对象
-        Configuration configuration = new Configuration ();
-        FileSystem fileSystem = FileSystem.get (URI.create (hdfs), configuration, "zhangyong");
+        Configuration configuration = new Configuration();
+        FileSystem fileSystem = FileSystem.get(URI.create(hdfs), configuration, "zhangyong");
 
         //用这个对象操作文件系统
-        fileSystem.copyToLocalFile (new Path ("/result"), new Path ("d:\\"));
+        fileSystem.copyToLocalFile(new Path("/result"), new Path("d:\\"));
 
-        System.out.println ("下载完成");
+        System.out.println("下载完成");
         //关闭文件系统
-        fileSystem.close ();
+        fileSystem.close();
     }
 
     /**
@@ -95,15 +95,15 @@ public class HdfsTest {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         //1、读取一个HDFS的抽象封装对象
-        Configuration configuration = new Configuration ();
-        FileSystem fileSystem = FileSystem.get (URI.create (hdfs), configuration, "zhangyong");
+        Configuration configuration = new Configuration();
+        FileSystem fileSystem = FileSystem.get(URI.create(hdfs), configuration, "zhangyong");
 
         //用这个对象操作文件系统
-        fileSystem.rename (new Path ("/upload"), new Path ("/up"));
+        fileSystem.rename(new Path("/upload"), new Path("/up"));
 
-        System.out.println ("更改完成");
+        System.out.println("更改完成");
         //关闭文件系统
-        fileSystem.close ();
+        fileSystem.close();
     }
 
     /**
@@ -118,13 +118,13 @@ public class HdfsTest {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         // 1 获取文件系统
-        Configuration configuration = new Configuration ();
-        FileSystem fileSystem = FileSystem.get (new URI (hdfs), configuration, "zhangyong");
+        Configuration configuration = new Configuration();
+        FileSystem fileSystem = FileSystem.get(new URI(hdfs), configuration, "zhangyong");
         // 2 执行删除
-        fileSystem.delete (new Path ("/anshun/"), true);
+        fileSystem.delete(new Path("/anshun/"), true);
         // 3 关闭资源
-        fileSystem.close ();
-        System.out.println ("删除完成");
+        fileSystem.close();
+        System.out.println("删除完成");
     }
 
     /**
@@ -139,43 +139,43 @@ public class HdfsTest {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         // 1获取文件系统
-        Configuration configuration = new Configuration ();
-        FileSystem fileSystem = FileSystem.get (new URI (hdfs), configuration, "zhangyong");
+        Configuration configuration = new Configuration();
+        FileSystem fileSystem = FileSystem.get(new URI(hdfs), configuration, "zhangyong");
 
         // 2 获取文件详情
-        RemoteIterator<LocatedFileStatus> listFiles = fileSystem.listFiles (new Path ("/"), true);
+        RemoteIterator<LocatedFileStatus> listFiles = fileSystem.listFiles(new Path("/"), true);
 
-        while (listFiles.hasNext ()) {
-            LocatedFileStatus status = listFiles.next ();
+        while (listFiles.hasNext()) {
+            LocatedFileStatus status = listFiles.next();
 
             // 输出详情
             // 文件名称
-            System.out.println ("文件名称=" + status.getPath ().getName ());
+            System.out.println("文件名称=" + status.getPath().getName());
             // 长度
-            System.out.println ("文件长度=" + status.getLen ());
+            System.out.println("文件长度=" + status.getLen());
             // 权限
-            System.out.println ("文件权限=" + status.getPermission ());
+            System.out.println("文件权限=" + status.getPermission());
             // 分组
-            System.out.println ("文件分组=" + status.getGroup ());
+            System.out.println("文件分组=" + status.getGroup());
 
             // 获取存储的块信息
-            BlockLocation[] blockLocations = status.getBlockLocations ();
+            BlockLocation[] blockLocations = status.getBlockLocations();
 
             for (BlockLocation blockLocation : blockLocations) {
 
                 // 获取块存储的主机节点
-                String[] hosts = blockLocation.getHosts ();
+                String[] hosts = blockLocation.getHosts();
 
                 for (String host : hosts) {
-                    System.out.println (host);
+                    System.out.println(host);
                 }
             }
 
-            System.out.println ("-----------分割线----------");
+            System.out.println("-----------分割线----------");
         }
 
         // 3 关闭资源
-        fileSystem.close ();
+        fileSystem.close();
     }
 
     /**
@@ -190,24 +190,24 @@ public class HdfsTest {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         // 1 获取文件配置信息
-        Configuration configuration = new Configuration ();
-        FileSystem fileSystem = FileSystem.get (new URI (hdfs), configuration, "zhangyong");
+        Configuration configuration = new Configuration();
+        FileSystem fileSystem = FileSystem.get(new URI(hdfs), configuration, "zhangyong");
 
         // 2 判断是文件还是文件夹
-        FileStatus[] listStatus = fileSystem.listStatus (new Path ("/"));
+        FileStatus[] listStatus = fileSystem.listStatus(new Path("/"));
 
         for (FileStatus fileStatus : listStatus) {
 
             // 如果是文件
-            if (fileStatus.isFile ()) {
-                System.out.println ("文件:" + fileStatus.getPath ().getName ());
+            if (fileStatus.isFile()) {
+                System.out.println("文件:" + fileStatus.getPath().getName());
             } else {
-                System.out.println ("文件夹:" + fileStatus.getPath ().getName ());
+                System.out.println("文件夹:" + fileStatus.getPath().getName());
             }
         }
 
         // 3 关闭资源
-        fileSystem.close ();
+        fileSystem.close();
     }
 
     /**
@@ -221,12 +221,13 @@ public class HdfsTest {
         //虚拟机连接名，必须在本地配置域名，不然只能IP地址访问
         String hdfs = "hdfs://hadoop201:9000";
         // 1 获取文件系统
-        Configuration configuration = new Configuration ();
-        FileSystem fileSystem = FileSystem.get (new URI (hdfs), configuration, "zhangyong");
+        Configuration configuration = new Configuration();
+        FileSystem fileSystem = FileSystem.get(new URI(hdfs), configuration, "zhangyong");
         // 2 执行删除
-        fileSystem.mkdirs (new Path ("/anshun"));
+        fileSystem.mkdirs(new Path("/anshun"));
+        System.out.println("创建完成");
         // 3 关闭资源
-        fileSystem.close ();
-        System.out.println ("创建完成");
+        fileSystem.close();
     }
+
 }

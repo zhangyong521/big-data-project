@@ -1,0 +1,3 @@
+alex	StuScore{name='alex', chinese=229, math=239, english=199}
+lee	StuScore{name='lee', chinese=232, math=188, english=253}
+romeo	StuScore{name='romeo', chinese=159, math=237, english=194}
